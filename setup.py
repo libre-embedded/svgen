@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
-# version=3.1.4
-# hash=2c50dc726c2b9ac8def8ad8b6a415bc8
+# version=3.2.1
+# hash=9f20a922f493b52500f000077bb00c07
 # =====================================
 
 """
@@ -18,9 +18,9 @@ except (ImportError, ModuleNotFoundError):
 from svgen import DESCRIPTION, PKG_NAME, VERSION
 
 author_info = {
-    "name": "Vaughn Kottler",
+    "name": "Libre Embedded",
     "email": "vaughn@libre-embedded.com",
-    "username": "vkottler",
+    "username": "libre-embedded",
 }
 pkg_info = {
     "name": PKG_NAME,

@@ -65,6 +65,7 @@ jobs:
           fail_ci_if_error: true
           verbose: true
           token: ${{secrets.CODECOV_TOKEN}}
+          slug: libre-embedded/svgen
 
       - run: mk pypi-upload-ci
         env:
@@ -76,8 +77,8 @@ jobs:
           && github.ref_name == 'master'
 
       - run: |
-          mk python-release owner=vkottler \
-                            repo=svgen version=0.7.6
+          mk python-release owner=libre-embedded \
+                            repo=svgen version=0.7.7
         if: |
           matrix.python-version == '3.12'
           && matrix.system == 'ubuntu-latest'
