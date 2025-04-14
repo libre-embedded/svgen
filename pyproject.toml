@@ -4,17 +4,17 @@ build-backend = "setuptools.build_meta:__legacy__"
 
 [project]
 name = "svgen"
-version = "0.7.6"
+version = "0.7.7"
 description = "A tool for working with scalable vector graphics."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
-  {name = "Vaughn Kottler", email = "vaughn@libre-embedded.com"}
+  {name = "Libre Embedded", email = "vaughn@libre-embedded.com"}
 ]
 maintainers = [
-  {name = "Vaughn Kottler", email = "vaughn@libre-embedded.com"}
+  {name = "Libre Embedded", email = "vaughn@libre-embedded.com"}
 ]
 classifiers = [
   "Programming Language :: Python :: 3.12",

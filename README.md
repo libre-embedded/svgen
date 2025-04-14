@@ -1,22 +1,22 @@
 <!--
     =====================================
     generator=datazen
-    version=3.1.4
-    hash=97c5f7b583ee97a748692db8f3ac1cd3
+    version=3.2.1
+    hash=bf40d3fd8afedfcbfba1bf3692a4ffda
     =====================================
 -->
 
-# svgen ([0.7.6](https://pypi.org/project/svgen/))
+# svgen ([0.7.7](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
-![Build Status](https://github.com/vkottler/svgen/workflows/Python%20Package/badge.svg)
-[![codecov](https://codecov.io/gh/vkottler/svgen/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/github/vkottler/svgen)
+![Build Status](https://github.com/libre-embedded/svgen/workflows/Python%20Package/badge.svg)
+[![codecov](https://codecov.io/gh/libre-embedded/svgen/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/github/libre-embedded/svgen)
 ![PyPI - Status](https://img.shields.io/pypi/status/svgen)
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/pypi/svgen)
 
 *A tool for working with scalable vector graphics.*
 
-([interface documentation](https://vkottler.github.io/python/svgen))
+([interface documentation](https://libre-embedded.github.io/python/svgen))
 
 ## Python Version Support
 
