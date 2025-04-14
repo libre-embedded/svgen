@@ -103,6 +103,8 @@ COMMON_SIZES = {
         AspectRatio(1024, 1024, True),
         AspectRatio(1920, 1920, True),
     ],
+    # GitHub social preview.
+    "2:1": [AspectRatio(1280, 640, True)],
     "4:1": [AspectRatio(17280, 4320, True), AspectRatio(1600, 400, True)],
     # Twitter banner.
     "3:1": [AspectRatio(1500, 500, True)],
