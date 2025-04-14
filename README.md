@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.1.4
-    hash=56c4f210e2ff2496a2c3c015c18bc0f7
+    hash=97c5f7b583ee97a748692db8f3ac1cd3
     =====================================
 -->
 
-# svgen ([0.7.5](https://pypi.org/project/svgen/))
+# svgen ([0.7.6](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
 ![Build Status](https://github.com/vkottler/svgen/workflows/Python%20Package/badge.svg)
@@ -16,14 +16,7 @@
 
 *A tool for working with scalable vector graphics.*
 
-## Documentation
-
-### Generated
-
-* By [sphinx-apidoc](https://vkottler.github.io/python/sphinx/svgen)
-(What's [`sphinx-apidoc`](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html)?)
-* By [pydoc](https://vkottler.github.io/python/pydoc/svgen.html)
-(What's [`pydoc`](https://docs.python.org/3/library/pydoc.html)?)
+([interface documentation](https://vkottler.github.io/python/svgen))
 
 ## Python Version Support
 
