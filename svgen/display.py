@@ -100,13 +100,18 @@ COMMON_SIZES = {
     "21:9": [AspectRatio(2560, 1080, True), AspectRatio(3440, 1440, True)],
     "32:9": [AspectRatio(3840, 1080, True), AspectRatio(5120, 1440, True)],
     "1:1": [
+        AspectRatio(400, 400, True),
         AspectRatio(512, 512, True),
         AspectRatio(1024, 1024, True),
         AspectRatio(1920, 1920, True),
     ],
     # GitHub social preview.
     "2:1": [AspectRatio(1280, 640, True)],
-    "4:1": [AspectRatio(17280, 4320, True), AspectRatio(1600, 400, True)],
+    "4:1": [
+        AspectRatio(17280, 4320, True),
+        AspectRatio(1600, 400, True),
+        AspectRatio(1584, 396, True),
+    ],
     # Twitter banner.
     "3:1": [AspectRatio(1500, 500, True)],
     # 14-inch Macbook Pro monitor.
