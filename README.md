@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=8551d1afa320763a022d9832c52f809d
+    hash=1e46bce7f1a7b75e7e20dcdd44f49032
     =====================================
 -->
 
-# svgen ([0.7.9](https://pypi.org/project/svgen/))
+# svgen ([0.7.10](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
 ![Build Status](https://github.com/libre-embedded/svgen/workflows/Python%20Package/badge.svg)
@@ -15,6 +15,8 @@
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/pypi/svgen)
 
 *A tool for working with scalable vector graphics.*
+
+Consider [sponsoring development](https://github.com/sponsors/libre-embedded).
 
 ([interface documentation](https://libre-embedded.github.io/python/svgen))
 
