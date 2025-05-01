@@ -1,0 +1,47 @@
+@font-face {
+  font-family: CascadiaCode;
+  src: url("/static/woff2/CascadiaCode-Regular.woff2");
+}
+
+@font-face {
+  font-family: CascadiaCode;
+  src: url("/static/woff2/CascadiaCode-Bold.woff2");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: CascadiaCode;
+  src: url("/static/woff2/CascadiaCode-BoldItalic.woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: CascadiaCode;
+  src: url("/static/woff2/CascadiaCode-Italic.woff2");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: CascadiaMono;
+  src: url("/static/woff2/CascadiaMono-Regular.woff2");
+}
+
+@font-face {
+  font-family: CascadiaMono;
+  src: url("/static/woff2/CascadiaMono-Bold.woff2");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: CascadiaMono;
+  src: url("/static/woff2/CascadiaMono-BoldItalic.woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: CascadiaMono;
+  src: url("/static/woff2/CascadiaMono-Italic.woff2");
+  font-style: italic;
+}

@@ -7,6 +7,7 @@ from io import StringIO
 
 # module under test
 from svgen.element.html import Html, div
+from svgen.element.style import Style
 
 
 def test_html_basic():
@@ -17,6 +18,8 @@ def test_html_basic():
 
     div(parent=doc.body, text="Hello, world! (front)", front=True)
     div(parent=doc.body, text="Hello, world! (back)")
+
+    assert Style.cascadia_font()
 
     with StringIO() as stream:
         doc.render(stream)
