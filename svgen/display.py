@@ -122,6 +122,8 @@ COMMON_SIZES = {
     "2560:423": [AspectRatio(2560, 423, True)],
     # Twitch banner.
     "1200:480": [AspectRatio(1200, 480, True)],
+    # Google admin logo.
+    "80:33": [AspectRatio(320, 132, True)],
 }
 COMMON_SIZES["1:1"].extend(AspectRatio(x, x, True) for x in ICON_SIZES)
 
