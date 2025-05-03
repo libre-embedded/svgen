@@ -12,6 +12,7 @@ from xml.etree import ElementTree as et
 from svgen.attribute import (
     Attribute,
     AttributeValue,
+    PossibleAttributes,
     SimpleAttribute,
     attributes,
 )
@@ -28,7 +29,7 @@ class Element:
         self,
         tag: str = None,
         text: str = "",
-        attrib: List[Attribute] = None,
+        attrib: PossibleAttributes = None,
         children: List["Element"] = None,
         allow_no_end_tag: bool = True,
         class_str: str = None,
@@ -40,8 +41,6 @@ class Element:
         if tag is None:
             tag = type(self).__name__
             tag = tag[0].lower() + tag[1:]
-        if attrib is None:
-            attrib = []
         if children is None:
             children = []
 
@@ -55,7 +54,7 @@ class Element:
 
         self.preformatted = preformatted
 
-        for attr in attrib + attributes(extra):
+        for attr in attributes(data=attrib) + attributes(data=extra):
             self.add_attribute(attr)
 
         # Set a 'class' attribute.
