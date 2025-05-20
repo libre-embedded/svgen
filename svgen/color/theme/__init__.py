@@ -5,7 +5,7 @@ A module for working with color themes.
 # built-in
 from collections import UserDict
 from collections.abc import Mapping
-from typing import Dict, MutableMapping, NamedTuple, Optional, Tuple, cast
+from typing import MutableMapping, NamedTuple, Optional, cast
 
 # third-party
 from vcorelib.dict import GenericStrDict
@@ -16,7 +16,7 @@ from vcorelib.paths import Pathlike, normalize
 # internal
 from svgen.color import Color, Colorlike
 
-ColorTokens = Dict[str, Color]
+ColorTokens = dict[str, Color]
 
 
 class ColorToken(NamedTuple):
@@ -53,7 +53,7 @@ class ColorTheme(
     def __init__(
         self,
         name: str,
-        initialdata: Dict[str, Colorlike] = None,
+        initialdata: dict[str, Colorlike] = None,
         namespace: Namespace = None,
     ) -> None:
         """Initialize this color theme."""
@@ -75,7 +75,7 @@ class ColorTheme(
             },
         )
 
-    def lookup(self, key: str) -> Tuple[str, Optional[Color]]:
+    def lookup(self, key: str) -> tuple[str, Optional[Color]]:
         """Attempt to find an existing color in this theme by key."""
 
         result = None

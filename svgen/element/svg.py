@@ -2,9 +2,6 @@
 svgen - A module for the 'svg' element.
 """
 
-# built-in
-from typing import List
-
 # third-party
 from vcorelib.dict import GenericStrDict
 
@@ -24,7 +21,7 @@ class Svg(Element):
         """Construct a new svg element (or document)."""
 
         self.viewbox = viewbox
-        attrs: List[Attribute] = [self.viewbox]
+        attrs: list[Attribute] = [self.viewbox]
         if document:
             attrs.append(XMLNS)
         super().__init__(attrib=attrs, **extra)
@@ -40,7 +37,7 @@ def add_background_grid(
 
     del grid
 
-    to_add: List[Element] = []
+    to_add: list[Element] = []
 
     # Add a colored background rectangle, if at least 'color' is specified.
     if "color" in background:

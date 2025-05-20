@@ -2,9 +2,6 @@
 A module for adding circuit chips to SVG documents.
 """
 
-# built-in
-from typing import List, Tuple
-
 # internal
 from svgen.cartesian.rectangle import Rectangle
 from svgen.element import Element
@@ -20,13 +17,13 @@ def add_chip(
     circle_color: str = None,
     pin_count: int = 3,
     debug: bool = False,
-) -> Tuple[List[Element], Rect]:
+) -> tuple[list[Element], Rect]:
     """
     Add a circuit chip to the document based on the provided rectangle and
     other configurations.
     """
 
-    result: List[Element] = []
+    result: list[Element] = []
 
     has_circle = circle_color is not None
 

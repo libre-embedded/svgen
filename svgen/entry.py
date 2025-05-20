@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.1
-# hash=8374925c88a1f9c88881c5f279be02eb
+# hash=ee2187eba06663f458e13fa33bfd2fa9
 # =====================================
 
 """
@@ -14,7 +14,6 @@ from logging import getLogger
 import os
 from pathlib import Path
 import sys
-from typing import List
 
 # third-party
 from vcorelib.logging import init_logging, log_time, logging_args
@@ -24,7 +23,7 @@ from svgen import DESCRIPTION, VERSION
 from svgen.app import add_app_args, entry
 
 
-def main(argv: List[str] = None) -> int:
+def main(argv: list[str] = None) -> int:
     """Program entry-point."""
 
     result = 0

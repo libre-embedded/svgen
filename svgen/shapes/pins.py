@@ -2,21 +2,18 @@
 A module for adding pin elements to circuit chips.
 """
 
-# built-in
-from typing import List
-
 # internal
 from svgen.cartesian.rectangle.corner import BL, BR, TL, TR, RectangleCorner
 from svgen.element import Element
 from svgen.element.rect import Rect
 
 
-def add_pins(rect: Rect, count: int, color: str) -> List[Element]:
+def add_pins(rect: Rect, count: int, color: str) -> list[Element]:
     """Add some number of pins to a rectangle."""
 
     assert rect.square
 
-    result: List[Element] = []
+    result: list[Element] = []
 
     width = rect.width / 3.0
     height = (width / count) * 3 / 2

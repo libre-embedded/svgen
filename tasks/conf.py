@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.1
-# hash=7d378a1752611508007a77d4ca39a5af
+# hash=269f98f3a151045570e6990fb0328167
 # =====================================
 """
 A module for project-specific task registration.
@@ -10,7 +10,6 @@ A module for project-specific task registration.
 # built-in
 from pathlib import Path
 from subprocess import run
-from typing import Dict
 
 # third-party
 from vcorelib.task.manager import TaskManager
@@ -53,7 +52,7 @@ def register(
     manager: TaskManager,
     project: str,
     cwd: Path,
-    substitutions: Dict[str, str],
+    substitutions: dict[str, str],
 ) -> bool:
     """Register project tasks to the manager."""
 

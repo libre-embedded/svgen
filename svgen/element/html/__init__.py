@@ -24,6 +24,7 @@ class Html(Element):
         viewport: str = DEFAULT_VIEWPORT,
         charset: str = DEFAULT_ENCODING,
         lang: str = "en",
+        **kwargs,
     ) -> None:
         """Initialize this instance."""
 
@@ -41,7 +42,7 @@ class Html(Element):
             ],
         )
 
-        self.body = Element(tag="body")
+        self.body = Element(tag="body", **kwargs)
 
         super().__init__(
             attrib=attributes({"lang": lang}), children=[self.head, self.body]

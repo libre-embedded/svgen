@@ -5,7 +5,7 @@ svgen - Common interfaces and assets for SVG elements.
 # built-in
 from io import StringIO
 import os
-from typing import Dict, List, TextIO, TypeVar, cast
+from typing import TextIO, TypeVar, cast
 from xml.etree import ElementTree as et
 
 # internal
@@ -30,7 +30,9 @@ class Element:
         tag: str = None,
         text: str = "",
         attrib: PossibleAttributes = None,
-        children: List["Element"] = None,
+        children: list["Element"] = None,
+        head_child: "Element" = None,
+        tail_child: "Element" = None,
         allow_no_end_tag: bool = True,
         class_str: str = None,
         preformatted: bool = False,
@@ -41,15 +43,19 @@ class Element:
         if tag is None:
             tag = type(self).__name__
             tag = tag[0].lower() + tag[1:]
+
         if children is None:
             children = []
+        self.children: list[Element] = children
+        self.head_child = head_child
+        self.tail_child = tail_child
 
         self.tag = tag
         self.text = text
 
         self.allow_no_end_tag = allow_no_end_tag
 
-        self.attributes: Dict[str, Attribute] = {}
+        self.attributes: dict[str, Attribute] = {}
         self.booleans: set[str] = set()
 
         self.preformatted = preformatted
@@ -60,8 +66,6 @@ class Element:
         # Set a 'class' attribute.
         if class_str:
             self["class"] = class_str
-
-        self.children: List[Element] = children
 
     def add_class(self: T, *data: str) -> T:
         """Add a class string."""
@@ -147,6 +151,15 @@ class Element:
             output.write(indent_str + line)
             output.write(os.linesep)
 
+    def has_children(self) -> bool:
+        """Determine if this element has any children."""
+
+        return (
+            len(self.children) > 0
+            or self.head_child is not None
+            or self.tail_child is not None
+        )
+
     def encode(
         self,
         output: TextIO,
@@ -169,7 +182,7 @@ class Element:
         if attrs:
             output.write(f" {attrs}")
 
-        if self.text or self.children:
+        if self.text or self.has_children():
             # Close the opening tag.
             output.write(">")
             if newlines:
@@ -180,9 +193,13 @@ class Element:
                 self._write_text(output, indent_str, newlines=newlines)
 
             # Write children.
+            if self.head_child:
+                self.head_child.encode(output, quote, indent + 1, newlines)
             for child in self.children:
                 if child:
                     child.encode(output, quote, indent + 1, newlines)
+            if self.tail_child:
+                self.tail_child.encode(output, quote, indent + 1, newlines)
 
         # Close this element tag.
         output.write(self.closing(indent))

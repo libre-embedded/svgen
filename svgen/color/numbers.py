@@ -2,11 +2,8 @@
 svgen - A module for working with number primitives.
 """
 
-# built-in
-from typing import List, Union
 
-
-def css_number_to_ratio(val: Union[float, int, str]) -> float:
+def css_number_to_ratio(val: float | int | str) -> float:
     """
     Given a few possible types of input, return a ratio between 0.0 and 1.0.
     """
@@ -46,7 +43,7 @@ def css_number_to_ratio(val: Union[float, int, str]) -> float:
 
 def parse_ctor(
     value: str, prefix: str, suffix: str = None, sep: str = ","
-) -> List[str]:
+) -> list[str]:
     """Parse individual arguments out of some color constructor."""
 
     value = value.strip()

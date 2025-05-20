@@ -4,7 +4,7 @@ A module for working with common display assets.
 
 # built-in
 from math import isclose
-from typing import Iterator, List, NamedTuple, Union
+from typing import Iterator, NamedTuple, Union
 
 # internal
 from svgen.attribute.viewbox import ViewBox
@@ -62,7 +62,7 @@ class AspectRatio(NamedTuple):
         return AspectRatio(int(parts[0].strip()), int(parts[1].strip()))
 
     @property
-    def args(self) -> List[str]:
+    def args(self) -> list[str]:
         """Get inkscape command-line arguments."""
         assert self.final
         return ["-w", str(self.width), "-h", str(self.height)]

@@ -6,7 +6,6 @@ https://gitlab.com/inkscape/inkscape
 
 # built-in
 import asyncio
-from typing import List
 
 # third-party
 from vcorelib.task.subprocess.run import SubprocessExecStreamed
@@ -31,7 +30,7 @@ async def invoke(*cli_args: str, entry: str = DEFAULT_ENTRY) -> bool:
 
 
 async def invoke_multiple(
-    args: List[List[str]], entry: str = DEFAULT_ENTRY
+    args: list[list[str]], entry: str = DEFAULT_ENTRY
 ) -> bool:
     """Run multiple inkscape invocations at the same time."""
     return all(await asyncio.gather(*[invoke(*x, entry=entry) for x in args]))
