@@ -3,14 +3,14 @@ svgen - A module for working with colors.
 """
 
 # built-in
-from typing import Dict, NamedTuple, Union
+from typing import NamedTuple, Union
 
 # internal
 from svgen.color.conversion import hsl_to_rgb, rgb_to_hsl
 from svgen.color.hsl import Hsl
 from svgen.color.rgb import Rgb
 
-CSS_COLORS: Dict[str, str] = {
+CSS_COLORS: dict[str, str] = {
     # CSS Level 1
     "black": "#000000",
     "silver": "#c0c0c0",

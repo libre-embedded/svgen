@@ -3,7 +3,7 @@ svgen - A module for the 'style' attribute.
 """
 
 # built-in
-from typing import Dict, List, NamedTuple, Type, Union
+from typing import NamedTuple, Union
 
 # internal
 from svgen.attribute import Attribute
@@ -30,10 +30,10 @@ class CssProperty(NamedTuple):
         return CssProperty(prop, str(get_color(color, **kwargs)))
 
     @staticmethod
-    def decode(value: str) -> List["CssProperty"]:
+    def decode(value: str) -> list["CssProperty"]:
         """Create css properties from a string."""
 
-        result: List[CssProperty] = []
+        result: list[CssProperty] = []
 
         value = value.strip()
         props = [x.strip() for x in value.split(";")]
@@ -53,24 +53,24 @@ class CssProperty(NamedTuple):
         return f"{self.key}: {self.value}"
 
     @staticmethod
-    def encode(props: List["CssProperty"]) -> str:
+    def encode(props: list["CssProperty"]) -> str:
         """Encode a list of css properties to a string."""
         return "; ".join(x.encoded for x in props)
 
     @staticmethod
     def from_dict(
-        data: Dict[str, Union[str, int, float]],
-    ) -> List["CssProperty"]:
+        data: dict[str, Union[str, int, float]],
+    ) -> list["CssProperty"]:
         """Get a list of attributes from dictionary data."""
         return [CssProperty(key, str(value)) for key, value in data.items()]
 
 
 PossibleProperties = Union[
-    Dict[str, Union[str, int, float]], List[CssProperty], CssProperty
+    dict[str, Union[str, int, float]], list[CssProperty], CssProperty
 ]
 
 
-def properties(data: PossibleProperties = None) -> List[CssProperty]:
+def properties(data: PossibleProperties = None) -> list[CssProperty]:
     """
     Get properties from either an existing list of properties, or dictionary
     data.
@@ -91,7 +91,7 @@ class Style(Attribute):
     def __init__(self, props: PossibleProperties = None) -> None:
         """Construct a new style attribute."""
 
-        self.properties: List[CssProperty] = properties(props)
+        self.properties: list[CssProperty] = properties(props)
 
     def add(self, props: PossibleProperties) -> None:
         """Add CSS properties to this style instance."""
@@ -131,7 +131,7 @@ class Style(Attribute):
         return CssProperty.encode(self.properties)
 
     @classmethod
-    def decode(cls: Type["Style"], key: str, value: str) -> "Style":
+    def decode(cls: type["Style"], key: str, value: str) -> "Style":
         """Create this attribute from a string."""
 
         assert key == "style"

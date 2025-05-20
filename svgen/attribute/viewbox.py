@@ -3,7 +3,7 @@ svgen - A module for the 'viewBox' attribute.
 """
 
 # built-in
-from typing import NamedTuple, Type, Union
+from typing import NamedTuple, Union
 
 # third-party
 from vcorelib.dict import GenericStrDict
@@ -128,7 +128,7 @@ class ViewBox(Attribute):
         return self.data.center
 
     @classmethod
-    def decode(cls: Type["ViewBox"], key: str, value: str) -> "ViewBox":
+    def decode(cls: type["ViewBox"], key: str, value: str) -> "ViewBox":
         """Create this attribute from a string."""
 
         assert key == "viewBox"

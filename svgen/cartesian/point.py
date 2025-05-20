@@ -4,7 +4,7 @@ A module for interfacing with points.
 
 # built-in
 from math import isclose, sqrt
-from typing import Dict, NamedTuple, Union
+from typing import NamedTuple, Union
 
 # internal
 from svgen.attribute import SimpleAttribute
@@ -104,7 +104,7 @@ def to_center(point: Point) -> Point:
 
 DEFAULT = Point()
 DEFAULT_CENTER = to_center(DEFAULT)
-NamedPoints = Dict[str, Point]
+NamedPoints = dict[str, Point]
 
 
 class PointManager:
