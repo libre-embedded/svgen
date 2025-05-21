@@ -18,6 +18,15 @@ class Rectangle(NamedTuple):
     dimensions: Dimensions
     location: Point = DEFAULT
 
+    def contains(self, point: Point) -> bool:
+        """Determine if a point is within this rectangle."""
+
+        return (
+            self.location.x
+            <= point.x
+            <= self.location.x + self.dimensions.width
+        ) and self.location.y <= point.y <= self.dimensions.height
+
     def __eq__(self, other: object) -> bool:
         """Determine if this rectangle is equivalent to another."""
 
