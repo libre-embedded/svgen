@@ -46,6 +46,10 @@ def test_rectangle_corner_basic():
     assert rect.bottom_left == Point(0.0, 10.0)
     assert rect.bottom_right == Point(10.0, 10.0)
 
+    assert rect.contains(Point(5.0, 5.0))
+    assert not rect.contains(Point(15.0, 5.0))
+    assert not rect.contains(Point(5.0, 15.0))
+
     assert CORNERS["tl"].vector_dx == 0.0
     assert CORNERS["tl"].vector_dy == 1.0
 
