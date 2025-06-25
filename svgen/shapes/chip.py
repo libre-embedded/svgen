@@ -7,12 +7,9 @@ from svgen.cartesian.rectangle import Rectangle
 from svgen.color.resolve import get_color
 from svgen.element import Element
 from svgen.element.circle import Circle
+from svgen.element.path import Path
 from svgen.element.rect import Rect
 from svgen.shapes.pins import add_pins, corners_translated
-
-
-class Path(Element):
-    """A path element."""
 
 
 def add_outline_pins(  # pylint: disable=too-many-locals
@@ -98,11 +95,11 @@ def add_outline_pins(  # pylint: disable=too-many-locals
                     ]
 
             result.append(
-                Path(
-                    d=" ".join(cmds),
+                Path.create(
+                    *cmds,
                     attrib={
                         "fill": "none",
-                        "stroke": get_color(color),  # type: ignore
+                        "stroke": get_color(color),
                         "stroke-width": stroke_width,
                     },
                 )
