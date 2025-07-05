@@ -3,7 +3,7 @@ A module implementing cartesian object mutations.
 """
 
 # built-in
-from math import cos, degrees, isclose, radians, sin
+import math
 from typing import NamedTuple, Union
 
 
@@ -18,12 +18,12 @@ class Angle(NamedTuple):
     @staticmethod
     def from_degrees(val: float) -> "Angle":
         """Create an angle from a degree value."""
-        return Angle.from_radians(radians(val))
+        return Angle.from_radians(math.radians(val))
 
     @staticmethod
     def from_radians(val: float) -> "Angle":
         """Create an angle from a radian value."""
-        return Angle(degrees(val), val, sin(val), cos(val))
+        return Angle(math.degrees(val), val, math.sin(val), math.cos(val))
 
 
 ANGLES = {
@@ -41,7 +41,7 @@ class Translation(NamedTuple):
 
     def __eq__(self, other) -> bool:
         """Test if two translations are equivalent."""
-        return isclose(self.dx, other.dx, abs_tol=1e-12) and isclose(
+        return math.isclose(self.dx, other.dx, abs_tol=1e-12) and math.isclose(
             self.dy, other.dy, abs_tol=1e-12
         )
 
@@ -60,6 +60,22 @@ class Translation(NamedTuple):
         if isinstance(dx, Translation):
             return dx
         return Translation(dx, *args, **kwargs)
+
+    @staticmethod
+    def polar(
+        count: float,
+        radius: float = 1.0,
+        degrees: bool = True,
+        ccw: bool = True,
+    ) -> "Translation":
+        """Create a polar translation based on provided parameters."""
+
+        if degrees:
+            count = math.radians(count)
+        if not ccw:
+            count *= -1
+
+        return Translation(math.cos(count) * radius, math.sin(count) * radius)
 
 
 # Common translations.
