@@ -45,6 +45,19 @@ class Point(NamedTuple):
         )
         return Point(self.x + move.dx, self.y + move.dy, self.center, self.idx)
 
+    def polar(
+        self,
+        count: float,
+        radius: float = 1.0,
+        degrees: bool = True,
+        ccw: bool = True,
+    ) -> "Point":
+        """Create a new point from a polar-coordinate translation."""
+
+        return self.translate(
+            Translation.polar(count, radius=radius, degrees=degrees, ccw=ccw)
+        )
+
     def with_index(self, idx: int) -> "Point":
         """Get a new point with the specified index, from an existing point."""
         return Point(self.x, self.y, False, idx)
@@ -81,7 +94,11 @@ class Point(NamedTuple):
 
         if not isinstance(other, Point):
             return NotImplemented
-        return isclose(self.x, other.x) and isclose(self.y, other.y)
+
+        # Use an absolute tolerance for comparisons with zero.
+        return isclose(self.x, other.x, abs_tol=1e-09) and isclose(
+            self.y, other.y, abs_tol=1e-09
+        )
 
     def distance(self, point: "Point") -> float:
         """Compute the distance from this point to another."""
