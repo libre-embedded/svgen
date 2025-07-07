@@ -11,6 +11,7 @@ from typing import Iterable, cast
 # third-party
 from vcorelib.dict import GenericStrDict
 from vcorelib.dict.config import Config
+from vcorelib.io import DEFAULT_INCLUDES_KEY
 
 # internal
 from svgen import PKG_NAME
@@ -74,7 +75,9 @@ def entry(args: argparse.Namespace) -> int:
     """Execute the requested task."""
 
     try:
-        config = Config.from_path(args.config)
+        config = Config.from_path(
+            args.config, includes_key=DEFAULT_INCLUDES_KEY
+        )
     except AssertionError:
         config = Config()
 

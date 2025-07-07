@@ -1,6 +1,5 @@
 {
-    "height": 100,
-    "width": 100,
+    "includes": ["sample_include.yaml"],
     "background": {"color": "orange"},
     "variants": [{"color": "blue"}]
 }
