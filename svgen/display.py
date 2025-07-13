@@ -95,10 +95,19 @@ COMMON_SIZES = {
         AspectRatio(1366, 768, True),
         AspectRatio(1920, 1080, True),
         AspectRatio(2560, 1440, True),
+        AspectRatio(3840, 2160, True),
     ],
     "17:9": [AspectRatio(4096, 2160, True)],
-    "21:9": [AspectRatio(2560, 1080, True), AspectRatio(3440, 1440, True)],
-    "32:9": [AspectRatio(3840, 1080, True), AspectRatio(5120, 1440, True)],
+    "21:9": [
+        AspectRatio(2560, 1080, True),
+        AspectRatio(3440, 1440, True),
+        AspectRatio(5120, 2160, True),
+    ],
+    "32:9": [
+        AspectRatio(3840, 1080, True),
+        AspectRatio(5120, 1440, True),
+        AspectRatio(7680, 2160, True),
+    ],
     "1:1": [
         AspectRatio(400, 400, True),
         AspectRatio(512, 512, True),
