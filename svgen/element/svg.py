@@ -41,13 +41,17 @@ def add_background_grid(
 
     # Add a colored background rectangle, if at least 'color' is specified.
     if "color" in background:
-        to_add.append(
-            Rect.centered(
-                svg.viewbox,
-                color=background["color"],
-                prop=background.get("property", "fill"),
-            )
+        elem = Rect.centered(
+            svg.viewbox,
+            color=background["color"],
+            prop=background.get("property", "fill"),
         )
+
+        opacity = background.get("opacity", None)
+        if opacity is not None:
+            elem["fill-opacity"] = opacity
+
+        to_add.append(elem)
 
     # Add any new children to the beginning of the document.
     svg.children = to_add + svg.children
