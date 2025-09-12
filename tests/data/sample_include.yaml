@@ -5,6 +5,7 @@ width: 100
 variants:
   - name: border1
     data:
+      opacity: 0.9
       border:
         color: red
       background:
