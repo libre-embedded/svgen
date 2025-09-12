@@ -45,6 +45,8 @@ def generate(
     add_background_grid(doc, config["background"], config["grid"])
     if "border" in config:
         doc.children.extend(compose_borders(doc.viewbox, config["border"]))
+    if "opacity" in config:
+        doc["opacity"] = config["opacity"]
 
     # Compose the document, via the external script.
     for script in list(scripts) + [Path(x) for x in config["scripts"]]:
