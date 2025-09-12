@@ -4,10 +4,13 @@ A module implementing a path element.
 
 # built-in
 from enum import StrEnum
+from typing import Any
 
 # internal
+from svgen.attribute.viewbox import ViewBox
 from svgen.cartesian.mutate import Translation
 from svgen.cartesian.point import Point
+from svgen.color.resolve import get_color
 from svgen.element import Element
 
 
@@ -63,3 +66,25 @@ class PathBuilder:
     def path(self, **kwargs) -> Path:
         """Get a path element based on this builder's state."""
         return Path.create(*self.cmds, **kwargs)
+
+
+def compose_borders(viewbox: ViewBox, config: dict[str, Any]) -> list[Element]:
+    """An example function for composing a document."""
+
+    builder = PathBuilder()
+    builder.point(viewbox.box.top_left, PathCmd.MOVE)
+
+    builder.horizontal(viewbox.width)
+    builder.vertical(viewbox.height)
+    builder.horizontal(-viewbox.width)
+    builder.close()
+
+    data = {
+        "fill": "none",
+        "stroke-width": config.get("stroke_width", 2),
+        "stroke": get_color(config["color"]),
+    }
+    if "opacity" in config:
+        data["stroke-opacity"] = config["opacity"]
+
+    return [builder.path(attrib=data)]

@@ -9,6 +9,7 @@ from vcorelib.dict import GenericStrDict
 from svgen.attribute import XMLNS, Attribute
 from svgen.attribute.viewbox import ViewBox
 from svgen.element import Element
+from svgen.element.path import compose_borders
 from svgen.element.rect import Rect
 
 
@@ -25,6 +26,20 @@ class Svg(Element):
         if document:
             attrs.append(XMLNS)
         super().__init__(attrib=attrs, **extra)
+
+    @staticmethod
+    def app(config: GenericStrDict) -> "Svg":
+        """Get an application SVG document."""
+
+        doc = Svg(ViewBox.from_dict(config))
+
+        add_background_grid(doc, config["background"], config["grid"])
+        if "border" in config:
+            doc.children.extend(compose_borders(doc.viewbox, config["border"]))
+        if "opacity" in config:
+            doc["opacity"] = config["opacity"]
+
+        return doc
 
 
 def add_background_grid(
