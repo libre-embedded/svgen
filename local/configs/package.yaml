@@ -7,7 +7,7 @@ entry: {{entry}}
 time_command: true
 
 requirements:
-  - vcorelib
+  - vcorelib>=3.6.7
 
 dev_requirements:
   - setuptools-wrapper
