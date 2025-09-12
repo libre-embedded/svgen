@@ -1,3 +1,18 @@
 ---
 height: 100
 width: 100
+
+variants:
+  - name: border1
+    data:
+      border:
+        color: red
+      background:
+        color: green
+        opacity: 0.5
+
+  - name: border2
+    data:
+      border:
+        color: blue
+        opacity: 0.5

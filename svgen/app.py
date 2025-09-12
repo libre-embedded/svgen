@@ -20,6 +20,7 @@ from svgen.color.theme.manager import DEFAULT_THEME, THEMES
 from svgen.element.svg import Svg, add_background_grid
 from svgen.generation.images import generate_images
 from svgen.script import invoke_script
+from svgen.shapes.border import compose_borders
 
 
 def generate(
@@ -42,6 +43,8 @@ def generate(
 
     doc = Svg(ViewBox.from_dict(cast(GenericStrDict, config)))
     add_background_grid(doc, config["background"], config["grid"])
+    if "border" in config:
+        doc.children.extend(compose_borders(doc.viewbox, config["border"]))
 
     # Compose the document, via the external script.
     for script in list(scripts) + [Path(x) for x in config["scripts"]]:
