@@ -4,12 +4,14 @@ svgen - This package's command-line entry-point application.
 
 # built-in
 import argparse
+from copy import deepcopy
+from logging import getLogger
 from pathlib import Path
 from sys import path
 from typing import Iterable, cast
 
 # third-party
-from vcorelib.dict import GenericStrDict
+from vcorelib.dict import GenericStrDict, merge_dicts
 from vcorelib.dict.config import Config
 from vcorelib.io import DEFAULT_INCLUDES_KEY
 
@@ -19,6 +21,8 @@ from svgen.color.theme.manager import DEFAULT_THEME, THEMES
 from svgen.element.svg import Svg
 from svgen.generation.images import generate_images
 from svgen.script import invoke_script
+
+LOG = getLogger(__name__)
 
 
 def generate(
@@ -48,8 +52,7 @@ def generate(
     # Write the composed document to the output file.
     with output.open("w", encoding="utf-8") as output_fd:
         doc.encode(output_fd)
-
-    print(f"Generated '{output}'.")
+    LOG.info("Wrote '%s'.", output)
 
     # Generate image outputs.
     if images:
@@ -82,7 +85,7 @@ def entry(args: argparse.Namespace) -> int:
     initialize_config(config, args.height, args.width)
 
     # Save the initial configuration data.
-    original = config.data.copy()
+    original = deepcopy(config.data)
 
     scripts = set(x.resolve() for x in args.scripts)
 
@@ -92,8 +95,12 @@ def entry(args: argparse.Namespace) -> int:
     # Generate any document variants.
     for idx, variant in enumerate(config.get("variants", [])):
         # Load the variant's data.
-        config = Config(original.copy())
-        config.update(variant.get("data", {}))
+        config = Config(
+            merge_dicts(
+                [deepcopy(original), variant.get("data", {})],
+                expect_overwrite=True,
+            )
+        )
         initialize_config(config, args.height, args.width)
 
         # Set the output name for this variant.
