@@ -37,8 +37,7 @@ def css_number_to_ratio(val: float | int | str) -> float:
         float_val = float(val) / 255.0
 
     # Normalize the result to a ratio between 0.0 and 1.0.
-    float_val = max(float_val, 0.0)
-    return min(float_val, 1.0)
+    return min(max(float_val, 0.0), 1.0)
 
 
 def parse_ctor(
