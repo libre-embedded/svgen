@@ -47,6 +47,38 @@ class Hsl(NamedTuple):
     lightness: PercentPrimitive
     alpha: Alpha = DEFAULT
 
+    def animate(
+        self,
+        hue: int = None,
+        saturation: float = None,
+        lightness: float = None,
+        alpha: float = None,
+        delta: bool = False,
+    ) -> "Hsl":
+        """Manipulate this color into a new one."""
+
+        if hue is None:
+            hue = self.hue
+        elif delta:
+            hue = self.hue + hue
+
+        if saturation is None:
+            saturation = self.saturation.ratio
+        elif delta:
+            saturation = self.saturation.ratio + saturation
+
+        if lightness is None:
+            lightness = self.lightness.ratio
+        elif delta:
+            lightness = self.lightness.ratio + lightness
+
+        if alpha is None:
+            alpha = self.alpha
+        elif delta:
+            alpha = self.alpha + alpha
+
+        return hsla(hue, saturation, lightness, alpha)
+
     def arc(
         self,
         hue_count: int = 1,

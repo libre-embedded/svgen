@@ -40,6 +40,38 @@ class Rgb(NamedTuple):
     blue: RgbPrimitive
     alpha: Alpha = DEFAULT
 
+    def animate(
+        self,
+        red: int = None,
+        green: int = None,
+        blue: int = None,
+        alpha: float = None,
+        delta: bool = False,
+    ) -> "Rgb":
+        """Animate a color."""
+
+        if red is None:
+            red = self.red
+        elif delta:
+            red = self.red + red
+
+        if green is None:
+            green = self.green
+        elif delta:
+            green = self.green + green
+
+        if blue is None:
+            blue = self.blue
+        elif delta:
+            blue = self.blue + blue
+
+        if alpha is None:
+            alpha = self.alpha
+        elif delta:
+            alpha = self.alpha + alpha
+
+        return rgba(red, green, blue, alpha)
+
     def __str__(self) -> str:
         """Get this color as a hex string."""
 

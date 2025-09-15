@@ -6,8 +6,27 @@ svgen - Test the 'svgen.color.rgb' module.
 from math import isclose
 
 # module under test
+from svgen.color import Color
 from svgen.color.numbers import css_number_to_ratio
 from svgen.color.rgb import Rgb, rgb, rgba
+
+
+def test_rgb_animate():
+    """Test basic functionality of rgb color animation."""
+
+    color = Color.from_ctor("rgba(50, 50, 50, 0.5)")
+    assert color.animate() == color
+    assert color.animate(red=color.rgb.red) == color
+    assert color.animate(blue=color.rgb.blue) == color
+    assert color.animate(green=color.rgb.green) == color
+
+    assert color.animate(
+        red=25, green=25, blue=25, alpha=0.25
+    ) == Color.from_ctor("rgba(25, 25, 25, 0.25")
+
+    assert color.animate(
+        red=25, green=25, blue=25, alpha=0.25, delta=True
+    ) == Color.from_ctor("rgba(75, 75, 75, 0.75")
 
 
 def test_rgb_basic():

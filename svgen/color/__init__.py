@@ -3,7 +3,7 @@ svgen - A module for working with colors.
 """
 
 # built-in
-from typing import NamedTuple, Union
+from typing import NamedTuple, TypeVar, Union
 
 # internal
 from svgen.color.conversion import hsl_to_rgb, rgb_to_hsl
@@ -166,6 +166,7 @@ CSS_COLORS["magenta"] = CSS_COLORS["fuchsia"]
 CSS_COLORS["slategrey"] = CSS_COLORS["slategray"]
 
 Colorlike = Union[str, Hsl, Rgb, "Color"]
+T = TypeVar("T", bound="Color")
 
 
 class Color(NamedTuple):
@@ -180,17 +181,17 @@ class Color(NamedTuple):
         return bool(self.rgb == other.rgb or self.hsl == other.hsl)
 
     @classmethod
-    def from_rgb(cls, color: Rgb) -> "Color":
+    def from_rgb(cls: type[T], color: Rgb) -> T:
         """Create a color from an rgb object."""
         return cls(color, rgb_to_hsl(color))
 
     @classmethod
-    def from_hex(cls, value: str) -> "Color":
+    def from_hex(cls: type[T], value: str) -> T:
         """Create a color from a hex value."""
         return cls.from_rgb(Rgb.from_hex(value))
 
     @classmethod
-    def from_hsl(cls, color: Hsl) -> "Color":
+    def from_hsl(cls: type[T], color: Hsl) -> T:
         """Create a color from an hsl object."""
         return cls(hsl_to_rgb(color), color)
 
@@ -199,7 +200,7 @@ class Color(NamedTuple):
         return self.from_hsl(self.hsl.arc(**kwargs))
 
     @classmethod
-    def from_ctor(cls, value: str) -> "Color":
+    def from_ctor(cls: type[T], value: str) -> T:
         """Create a color from an hsl or rgb constructor string."""
 
         # Check if this is a canonical color.
@@ -216,15 +217,46 @@ class Color(NamedTuple):
         return cls.from_hex(value)
 
     @classmethod
-    def create(cls, value: Colorlike) -> "Color":
+    def create(cls: type[T], value: Colorlike) -> T:
         """Create a color from a variety of possible sources."""
-        if isinstance(value, Color):
-            return value
+
+        if isinstance(value, (cls, Color)):
+            return value  # type: ignore
         if isinstance(value, Hsl):
             return cls.from_hsl(value)
         if isinstance(value, Rgb):
             return cls.from_rgb(value)
         return cls.from_ctor(value)
+
+    def animate(
+        self: T,
+        hue: int = None,
+        saturation: float = None,
+        lightness: float = None,
+        red: int = None,
+        green: int = None,
+        blue: int = None,
+        alpha: float = None,
+        delta: bool = False,
+    ) -> T:
+        """Animate this color based on HSL properties."""
+
+        if red is not None or blue is not None or green is not None:
+            return self.from_rgb(
+                self.rgb.animate(
+                    red=red, green=green, blue=blue, alpha=alpha, delta=delta
+                )
+            )
+
+        return self.from_hsl(
+            self.hsl.animate(
+                hue=hue,
+                saturation=saturation,
+                lightness=lightness,
+                alpha=alpha,
+                delta=delta,
+            )
+        )
 
     def __str__(self) -> str:
         """Convert this color to a hex string."""
