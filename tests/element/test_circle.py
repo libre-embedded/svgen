@@ -30,6 +30,13 @@ def test_circle_centered():
     assert circle.raw.radius == approx(50)
     assert circle.raw.center == Point(50, 50)
 
+    # Test a translated circle.
+    circle = Circle.centered(
+        box, radius_scale=0.5, translation={"dx": 25, "dy": 25}
+    )
+    assert circle.raw.radius == approx(25)
+    assert circle.raw.center == Point(75, 75)
+
     # Test a half-scale circle.
     circle = Circle.centered(box, 0.5)
     assert circle.raw.radius == approx(25)
@@ -39,6 +46,7 @@ def test_circle_centered():
     box = ViewBox(0, 0, 100, 50)
     circle = Circle.centered(box)
     assert circle.raw.radius == approx(25)
+    assert circle.raw.center == Point(50, 25)
     assert circle.raw.center == Point(50, 25)
 
 

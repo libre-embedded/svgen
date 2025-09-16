@@ -5,7 +5,7 @@ svgen - Test the 'svgen.color.hsl' module.
 # module under test
 from svgen.cartesian.angle import DegreePrimitive
 from svgen.color import Color
-from svgen.color.hsl import Hsl, hsl, hsla
+from svgen.color.hsl import Hsl, PercentPrimitive, hsl, hsla
 from svgen.color.resolve import get_color
 
 
@@ -16,6 +16,9 @@ def test_hsl_basic():
     assert color.hue == 0 and color.hue == DegreePrimitive(360)
     assert str(color) == "hsl(0, 100%, 50%)"
     assert Hsl.from_ctor(str(color)) == color
+
+    prim = PercentPrimitive(50)
+    assert prim == prim.arc(count=2, divisor=1)
 
 
 def test_hsl_animate():
