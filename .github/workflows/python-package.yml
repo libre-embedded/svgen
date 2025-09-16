@@ -78,7 +78,7 @@ jobs:
 
       - run: |
           mk python-release owner=libre-embedded \
-                            repo=svgen version=0.9.0
+                            repo=svgen version=0.9.1
         if: |
           matrix.python-version == '3.12'
           && matrix.system == 'ubuntu-latest'
