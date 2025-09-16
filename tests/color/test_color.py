@@ -18,3 +18,9 @@ def test_color_basic():
 
     assert Color.create(Hsl.from_ctor("hsl(0, 0%, 0%)")) == "#000000"
     assert Color.create(Rgb.from_ctor("rgb(0, 0, 0)")) == "#000000"
+
+    assert Color.from_ctor("hsl(0, 0%, 0%)").hsl_arc(
+        hue_divisor=2,
+        saturation_count=0,
+        lightness_count=0,
+    ) == Color.from_ctor("hsl(180, 0%, 0%)")

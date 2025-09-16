@@ -17,7 +17,8 @@ from vcorelib.io import DEFAULT_INCLUDES_KEY
 
 # internal
 from svgen import PKG_NAME
-from svgen.color.theme.manager import DEFAULT_THEME, THEMES
+from svgen.color.theme.manager import THEMES
+from svgen.config import add_dimension_args, initialize_config
 from svgen.element.svg import Svg
 from svgen.generation.images import generate_images
 from svgen.script import invoke_script
@@ -57,19 +58,6 @@ def generate(
     # Generate image outputs.
     if images:
         generate_images(doc, output)
-
-
-def initialize_config(
-    config: Config, default_height: int, default_width: int
-) -> None:
-    """Set initial values for SVG document configurations."""
-
-    config.set_if_not("height", default_height)
-    config.set_if_not("width", default_width)
-    config.set_if_not("scripts", [])
-    config.set_if_not("grid", {})
-    config.set_if_not("background", {})
-    config.set_if_not("theme", DEFAULT_THEME)
 
 
 def entry(args: argparse.Namespace) -> int:
@@ -132,25 +120,7 @@ def add_app_args(parser: argparse.ArgumentParser) -> None:
         help="top-level configuration to load (default: '%(default)s')",
     )
 
-    parser.add_argument(
-        "--height",
-        type=int,
-        default=100,
-        help=(
-            "height of the document, if not specified by "
-            "configuration (default: %(default)s)"
-        ),
-    )
-
-    parser.add_argument(
-        "--width",
-        type=int,
-        default=100,
-        help=(
-            "width of the document, if not specified by "
-            "configuration (default: %(default)s)"
-        ),
-    )
+    add_dimension_args(parser)
 
     parser.add_argument(
         "--images", action="store_true", help="generate output images"

@@ -68,6 +68,7 @@ class Circle(Element):
         **kwargs,
     ) -> "Circle":
         """Create a circle from a point and radius."""
+
         result = Circle(CartCircle(radius, center.to_center()), **kwargs)
         if color is not None:
             result.style.add_color(color, prop)
@@ -91,10 +92,15 @@ class Circle(Element):
             box = box.box
 
         radius = float(min(box.width, box.height)) / 2.0
-        result = Circle(
-            CartCircle(radius, to_center(box.center)).scale(radius_scale),
-            **kwargs,
-        )
+
+        circ = CartCircle(radius, to_center(box.center)).scale(radius_scale)
+
+        # Handle translation.
+        if "translation" in kwargs and kwargs["translation"]:
+            circ = circ.translate(Translation(**kwargs["translation"]))
+            del kwargs["translation"]
+
+        result = Circle(circ, **kwargs)
 
         if color is not None:
             result.style.add_color(color, prop)

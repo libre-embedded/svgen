@@ -8,6 +8,7 @@ from vcorelib.dict import GenericStrDict
 # internal
 from svgen.attribute import XMLNS, Attribute
 from svgen.attribute.viewbox import ViewBox
+from svgen.config import initialize_config
 from svgen.element import Element
 from svgen.element.path import compose_borders
 from svgen.element.rect import Rect
@@ -28,9 +29,12 @@ class Svg(Element):
         super().__init__(attrib=attrs, **extra)
 
     @staticmethod
-    def app(config: GenericStrDict) -> "Svg":
+    def app(config: GenericStrDict = None) -> "Svg":
         """Get an application SVG document."""
 
+        if config is None:
+            config = {}
+        initialize_config(config)
         doc = Svg(ViewBox.from_dict(config))
 
         add_background_grid(doc, config["background"], config["grid"])

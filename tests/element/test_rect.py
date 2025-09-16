@@ -71,3 +71,8 @@ def test_rect_centered():
     assert rect.dimensions.width == approx(50)
     assert rect.dimensions.height == approx(50)
     assert rect.location == Point(25, 25)
+
+    rect = Rect.centered(box, 0.5, 0.5, translation={"dx": 25, "dy": 25})
+    assert rect.dimensions.width == approx(50)
+    assert rect.dimensions.height == approx(50)
+    assert rect.location == Point(50, 50)

@@ -146,10 +146,14 @@ class Rect(FillColorMixin, RectangularMixin, RadiusXyMixin):
         if isinstance(box, ViewBox):
             box = box.box
 
-        result = Rect(
-            Rectangle.centered(box, width_scale, height_scale, square),
-            **kwargs,
-        )
+        rect = Rectangle.centered(box, width_scale, height_scale, square)
+
+        # Handle translation.
+        if "translation" in kwargs and kwargs["translation"]:
+            rect = rect.translate(Translation(**kwargs["translation"]))
+            del kwargs["translation"]
+
+        result = Rect(rect, **kwargs)
 
         if color is not None:
             result.style.add_color(color, prop)
