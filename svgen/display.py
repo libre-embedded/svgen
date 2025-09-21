@@ -112,6 +112,7 @@ COMMON_SIZES = {
         AspectRatio(7680, 2160, True),
     ],
     "1:1": [
+        AspectRatio(150, 150, True),  # YouTube video watermark
         AspectRatio(400, 400, True),
         AspectRatio(512, 512, True),
         AspectRatio(1024, 1024, True),
