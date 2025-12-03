@@ -1,4 +1,6 @@
 ---
 logo:
   yellow: "#ffff00"  # css 'yellow'
-  purple: "#7f00ff"
+  purple: "#7f00ff"  # ^ -150 hue angle
+  red: "#ff0000"  # cs 'red'
+  blue: "#0080ff"  # ^ -150 hue angle

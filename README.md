@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=56b4444dd82cff5acb9d4d73444a6159
+    hash=71c49ab5444bcbc7603082d7b95a1bed
     =====================================
 -->
 
-# svgen ([0.9.2](https://pypi.org/project/svgen/))
+# svgen ([0.9.3](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
 ![Build Status](https://github.com/libre-embedded/svgen/workflows/Python%20Package/badge.svg)
@@ -42,7 +42,7 @@ This utility provides a means to work on graphics with a programmatic workflow.
 # Command-line Options
 
 ```
-$ ./venv3.12/bin/svgen -h
+$ ./venv3.13/bin/svgen -h
 
 usage: svgen [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
              [-c CONFIG] [--height HEIGHT] [--width WIDTH] [--images]
@@ -52,27 +52,24 @@ usage: svgen [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
 A tool for working with scalable vector graphics.
 
 positional arguments:
-  scripts               scripts to run for composing the SVG document (in
-                        order)
+  scripts              scripts to run for composing the SVG document (in
+                       order)
 
 options:
-  -h, --help            show this help message and exit
-  --version             show program's version number and exit
-  -v, --verbose         set to increase logging verbosity
-  -q, --quiet           set to reduce output
-  --curses              whether or not to use curses.wrapper when starting
-  --no-uvloop           whether or not to disable uvloop as event loop driver
-  -C DIR, --dir DIR     execute from a specific directory
-  -c CONFIG, --config CONFIG
-                        top-level configuration to load (default:
-                        'svgen.json')
-  --height HEIGHT       height of the document, if not specified by
-                        configuration (default: 100)
-  --width WIDTH         width of the document, if not specified by
-                        configuration (default: 100)
-  --images              generate output images
-  -o OUTPUT, --output OUTPUT
-                        file to write SVG output (default: 'svgen.svg')
+  -h, --help           show this help message and exit
+  --version            show program's version number and exit
+  -v, --verbose        set to increase logging verbosity
+  -q, --quiet          set to reduce output
+  --curses             whether or not to use curses.wrapper when starting
+  --no-uvloop          whether or not to disable uvloop as event loop driver
+  -C, --dir DIR        execute from a specific directory
+  -c, --config CONFIG  top-level configuration to load (default: 'svgen.json')
+  --height HEIGHT      height of the document, if not specified by
+                       configuration (default: 100)
+  --width WIDTH        width of the document, if not specified by
+                       configuration (default: 100)
+  --images             generate output images
+  -o, --output OUTPUT  file to write SVG output (default: 'svgen.svg')
 
 ```
 
