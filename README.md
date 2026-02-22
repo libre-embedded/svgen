@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=71c49ab5444bcbc7603082d7b95a1bed
+    hash=91e21b3513f0892d67ab1b74b8e6f2f1
     =====================================
 -->
 
-# svgen ([0.9.3](https://pypi.org/project/svgen/))
+# svgen ([0.9.4](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
 ![Build Status](https://github.com/libre-embedded/svgen/workflows/Python%20Package/badge.svg)
@@ -24,8 +24,8 @@ Consider [sponsoring development](https://github.com/sponsors/libre-embedded).
 
 This package is tested with the following Python minor versions:
 
-* [`python3.12`](https://docs.python.org/3.12/)
 * [`python3.13`](https://docs.python.org/3.13/)
+* [`python3.14`](https://docs.python.org/3.14/)
 
 ## Platform Support
 
@@ -42,7 +42,7 @@ This utility provides a means to work on graphics with a programmatic workflow.
 # Command-line Options
 
 ```
-$ ./venv3.13/bin/svgen -h
+$ ./venv3.14/bin/svgen -h
 
 usage: svgen [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
              [-c CONFIG] [--height HEIGHT] [--width WIDTH] [--images]

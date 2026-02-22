@@ -1,11 +1,4 @@
 ---
-author_info:
-  name: Libre Embedded
-  email: vaughn@libre-embedded.com
-  username: libre-embedded
-
-versions: ["3.12", "3.13"]
-
 systems:
   - macos-latest
   - windows-latest
