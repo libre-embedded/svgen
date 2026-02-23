@@ -38,7 +38,7 @@ jobs:
           python-version: ${{matrix.python-version}}
           cache: pip
 
-      - run: pip${{matrix.python-version}} install vmklib>=2.0.11
+      - run: pip${{matrix.python-version}} install vmklib>=2.0.12
 
       # Begin project-specific setup.
       - run: mk python-editable
@@ -46,7 +46,7 @@ jobs:
 
       - run: mk python-sa-types
 
-      - run: mk docs version=0.9.4
+      - run: mk docs version=0.9.5
         if: |
           matrix.python-version == '3.14'
           && matrix.system == 'ubuntu-latest'
@@ -78,7 +78,7 @@ jobs:
 
       - run: |
           mk python-release owner=libre-embedded \
-                            repo=svgen version=0.9.4
+                            repo=svgen version=0.9.5
         if: |
           matrix.python-version == '3.14'
           && matrix.system == 'ubuntu-latest'

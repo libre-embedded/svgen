@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=91e21b3513f0892d67ab1b74b8e6f2f1
+    hash=b723f07425b36d6448cc6d3d4521bbb2
     =====================================
 -->
 
-# svgen ([0.9.4](https://pypi.org/project/svgen/))
+# svgen ([0.9.5](https://pypi.org/project/svgen/))
 
 [![python](https://img.shields.io/pypi/pyversions/svgen.svg)](https://pypi.org/project/svgen/)
 ![Build Status](https://github.com/libre-embedded/svgen/workflows/Python%20Package/badge.svg)
