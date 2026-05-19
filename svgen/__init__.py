@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
-# version=3.2.3
-# hash=0ac48b2bd00eb264c79311942b6c7a73
+# version=3.2.4
+# hash=2d526d77878c5f2f94e2e557daa9e745
 # =====================================
 
 """
@@ -10,4 +10,4 @@ Useful defaults and other package metadata.
 
 DESCRIPTION = "A tool for working with scalable vector graphics."
 PKG_NAME = "svgen"
-VERSION = "0.9.5"
+VERSION = "0.9.6"
