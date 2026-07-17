@@ -88,6 +88,7 @@ COMMON_SIZES = {
     "16:10": [
         AspectRatio(1280, 800, True),
         AspectRatio(1920, 1200, True),
+        AspectRatio(2560, 1600, True),
         AspectRatio(2880, 1800, True),
     ],
     "8:9": [
