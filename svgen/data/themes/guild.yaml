@@ -1,7 +1,12 @@
 ---
-jupiter:
-  red: "#a95318"  # yolo AI search (tongues)
-  blue: "56ace7"  # https://rgbcolorpicker.com/complementary
+jupiter:  # https://m2.material.io/design/color/the-color-system.html
+  primary: "#a95318"  # yolo AI search (tongues)
+  # complement: "56ace7"  # https://rgbcolorpicker.com/complementary
+  complementary: "#186fa9"
+  analogous0: "#a91826"
+  analogous1: "#a99b18"
+  triadic0: "#6fa918"
+  triadic1: "#18a952"
 logo:
   yellow: "#ffff00"  # css 'yellow'
   purple: "#7f00ff"  # ^ -150 hue angle
