@@ -5,7 +5,7 @@ svgen - Common interfaces for rgb colors. See also:
 """
 
 # built-in
-from typing import NamedTuple
+from typing import NamedTuple, Self
 
 # internal
 from svgen.color.alpha import DEFAULT, Alpha, Alphalike
@@ -15,7 +15,7 @@ from svgen.color.numbers import parse_ctor
 class RgbPrimitive(int):
     """An integer type for rgb values."""
 
-    def __new__(cls, val: int) -> "RgbPrimitive":
+    def __new__(cls, val: int) -> Self:
         """Create a new primitive value for an rgb color."""
 
         val = max(val, 0)
@@ -100,8 +100,7 @@ class Rgb(NamedTuple):
         """Get an rgb color from a hex string."""
 
         value = value.strip()
-        if value.startswith("#"):
-            value = value[1:]
+        value = value.removeprefix("#")
 
         assert len(value) == 6 or len(value) == 8, value
 

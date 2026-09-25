@@ -5,7 +5,7 @@ svgen - Common interfaces for hsl colors. See also:
 """
 
 # built-in
-from typing import NamedTuple
+from typing import NamedTuple, Self
 
 # internal
 from svgen.cartesian.angle import DegreePrimitive, Rotatable
@@ -16,7 +16,7 @@ from svgen.color.numbers import parse_ctor
 class PercentPrimitive(int, Rotatable):
     """A class for integer percentages."""
 
-    def __new__(cls, val: int) -> "PercentPrimitive":
+    def __new__(cls, val: int) -> Self:
         """Create a new percentage value."""
         return super().__new__(cls, min(max(val, 0), 100))
 

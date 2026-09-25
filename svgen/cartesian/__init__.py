@@ -4,7 +4,7 @@ svgen - A module for Cartesian-coordinate interfaces.
 
 # built-in
 from math import isclose
-from typing import NamedTuple, Tuple
+from typing import NamedTuple
 
 # internal
 from svgen.attribute import SimpleAttribute
@@ -102,7 +102,7 @@ class Dimensions(NamedTuple):
 
     def to_centered_square(
         self, scale: float = UNITY
-    ) -> Tuple["Dimensions", Translation]:
+    ) -> tuple["Dimensions", Translation]:
         """
         Make dimensions square and determine the resulting translation that
         would be needed to logically center the new object.

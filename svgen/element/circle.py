@@ -3,7 +3,6 @@ svgen - A module for the 'circle' element.
 """
 
 # built-in
-from typing import Union
 
 # internal
 from svgen.attribute import PossibleAttributes, attributes
@@ -76,7 +75,7 @@ class Circle(Element):
 
     @staticmethod
     def centered(
-        box: Union[ViewBox, Rectangle],
+        box: ViewBox | Rectangle,
         radius_scale: float = UNITY,
         color: Colorlike = None,
         prop: str = "fill",
@@ -96,7 +95,7 @@ class Circle(Element):
         circ = CartCircle(radius, to_center(box.center)).scale(radius_scale)
 
         # Handle translation.
-        if "translation" in kwargs and kwargs["translation"]:
+        if kwargs.get("translation"):
             circ = circ.translate(Translation(**kwargs["translation"]))
             del kwargs["translation"]
 

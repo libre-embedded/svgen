@@ -1,4 +1,7 @@
 ---
+jupiter:
+  red: "#a95318"  # yolo AI search (tongues)
+  blue: "56ace7"  # https://rgbcolorpicker.com/complementary
 logo:
   yellow: "#ffff00"  # css 'yellow'
   purple: "#7f00ff"  # ^ -150 hue angle

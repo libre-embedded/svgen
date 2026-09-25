@@ -4,8 +4,8 @@ A module implementing a color-theme manager.
 
 # built-in
 from collections import UserDict
+from collections.abc import MutableMapping
 from pathlib import Path
-from typing import MutableMapping
 
 # third-party
 from vcorelib.logging import LoggerMixin
@@ -25,7 +25,7 @@ class ColorThemeManager(
     """A class for managing color themes."""
 
     def __init__(
-        self, initialdata: dict[str, ColorTheme] = None, theme: str = ""
+        self, initialdata: dict[str, ColorTheme] | None = None, theme: str = ""
     ) -> None:
         """Initialize this theme manager."""
 

@@ -4,7 +4,7 @@ A module implementing an interface for angles.
 
 # built-in
 from abc import ABC, abstractmethod
-from typing import TypeVar
+from typing import Self, TypeVar
 
 T = TypeVar("T", bound="Rotatable")
 
@@ -22,7 +22,7 @@ class DegreePrimitive(int, Rotatable):
     A class to manage integer primitives for degrees within a 0 and 360 range.
     """
 
-    def __new__(cls, val: int) -> "DegreePrimitive":
+    def __new__(cls, val: int) -> Self:
         """Construct a new degree value."""
         return super().__new__(cls, val % 360)
 

@@ -2,10 +2,11 @@
 A module for generating images from SVG files.
 """
 
-# built-in
 from asyncio import run
 from contextlib import suppress
 from pathlib import Path
+
+# built-in
 import subprocess
 
 # internal

@@ -5,7 +5,7 @@ svgen - Common interfaces and assets for SVG elements.
 # built-in
 from io import StringIO
 import os
-from typing import TextIO, TypeVar, cast
+from typing import Self, TextIO, TypeVar, cast
 from xml.etree import ElementTree as et
 
 # internal
@@ -26,15 +26,15 @@ class Element:
     """A basic interface for an SVG element."""
 
     def __init__(
-        self,
-        tag: str = None,
+        self: Self,
+        tag: str | None = None,
         text: str = "",
         attrib: PossibleAttributes = None,
-        children: list["Element"] = None,
-        head_child: "Element" = None,
-        tail_child: "Element" = None,
+        children: list["Element"] | None = None,
+        head_child: T | None = None,
+        tail_child: T | None = None,
         allow_no_end_tag: bool = True,
-        class_str: str = None,
+        class_str: str | None = None,
         preformatted: bool = False,
         **extra,
     ) -> None:
@@ -67,7 +67,7 @@ class Element:
         if class_str:
             self["class"] = class_str
 
-    def add_class(self: T, *data: str) -> T:
+    def add_class(self, *data: str) -> Self:
         """Add a class string."""
 
         raw = self["class"]
@@ -111,7 +111,7 @@ class Element:
             self.add_attribute(Style())
         return cast(Style, self.attributes["style"])
 
-    def add_attribute(self: T, attr: Attribute, strict: bool = True) -> T:
+    def add_attribute(self, attr: Attribute, strict: bool = True) -> Self:
         """Add an attribute to this element."""
 
         assert not strict or (

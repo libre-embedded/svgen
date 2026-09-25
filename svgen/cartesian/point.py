@@ -4,7 +4,7 @@ A module for interfacing with points.
 
 # built-in
 from math import isclose, sqrt
-from typing import NamedTuple, Union
+from typing import NamedTuple
 
 # internal
 from svgen.attribute import SimpleAttribute
@@ -36,7 +36,7 @@ class Point(NamedTuple):
     center: bool = False
     idx: int = -1
 
-    def translate(self, move: Union[Translation, float], *args) -> "Point":
+    def translate(self, move: Translation | float, *args) -> "Point":
         """Move a point by a given translation."""
         move = (
             Translation(move, *args)
@@ -138,7 +138,7 @@ class PointManager:
         """Access a point object."""
         return self.points[name]
 
-    def add_point(self, name: str, point: Union[Point, float], *args) -> Point:
+    def add_point(self, name: str, point: Point | float, *args) -> Point:
         """Add a named point to this manager."""
 
         if not isinstance(point, Point):
@@ -148,7 +148,7 @@ class PointManager:
         self.points[name] = point
         return self.points[name]
 
-    def translate(self, move: Union[Translation, float], *args) -> None:
+    def translate(self, move: Translation | float, *args) -> None:
         """Translate all entities in the plane by some amount."""
 
         for key, val in self.points.items():

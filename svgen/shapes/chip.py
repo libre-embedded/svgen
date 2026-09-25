@@ -16,7 +16,7 @@ def add_outline_pins(  # pylint: disable=too-many-locals
     rect: Rect,
     count: int,
     color: str,
-    stroke_width: int | float = 3.0,
+    stroke_width: float = 3.0,
 ) -> list[Element]:
     """Add some number of pins to a rectangle."""
 
@@ -115,10 +115,10 @@ def add_outline_pins(  # pylint: disable=too-many-locals
 def add_outline_chip(
     box: Rectangle,
     pin_color: str = "gray",
-    circle_color: str = None,
+    circle_color: str | None = None,
     pin_count: int = 3,
     debug: bool = False,
-    stroke_width: int | float = 3.0,
+    stroke_width: float = 3.0,
 ) -> tuple[list[Element], Rect]:
     """
     Add a circuit chip to the document based on the provided rectangle and
@@ -181,7 +181,7 @@ def add_chip(
     box: Rectangle,
     body_color: str = "black",
     pin_color: str = "gray",
-    circle_color: str = None,
+    circle_color: str | None = None,
     pin_count: int = 3,
     debug: bool = False,
 ) -> tuple[list[Element], Rect]:

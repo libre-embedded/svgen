@@ -3,7 +3,6 @@ svgen - A module for the 'line' element.
 """
 
 # built-in
-from typing import Union
 
 # internal
 from svgen.attribute import PossibleAttributes, attributes
@@ -34,9 +33,7 @@ class Line(Element):
         )
         super().__init__(attrib=real_attrs, **extra)
 
-    def translate(
-        self, move: Union[Translation, float], *args, **kwargs
-    ) -> "Line":
+    def translate(self, move: Translation | float, *args, **kwargs) -> "Line":
         """Move a rectangle by a given translation."""
         move = Translation.normalize(move, *args, **kwargs)
         return Line(self.p1.translate(move), self.p2.translate(move))
