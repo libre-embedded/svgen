@@ -3,7 +3,7 @@ svgen - A module for the 'viewBox' attribute.
 """
 
 # built-in
-from typing import NamedTuple, Union
+from typing import NamedTuple
 
 # third-party
 from vcorelib.dict import GenericStrDict
@@ -86,9 +86,7 @@ class ViewBox(Attribute):
         """Create a grid from this viewBox."""
         return self.grid.adjust(columns, rows, rect)
 
-    def translate(
-        self, dx: Union[Translation, float], *args, **kwargs
-    ) -> None:
+    def translate(self, dx: Translation | float, *args, **kwargs) -> None:
         """Apply a translation to this viewBox."""
 
         move = Translation.normalize(dx, *args, **kwargs)

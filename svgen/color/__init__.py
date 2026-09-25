@@ -3,7 +3,7 @@ svgen - A module for working with colors.
 """
 
 # built-in
-from typing import NamedTuple, TypeVar, Union
+from typing import NamedTuple, Self, TypeVar, Union
 
 # internal
 from svgen.color.conversion import hsl_to_rgb, rgb_to_hsl
@@ -181,17 +181,17 @@ class Color(NamedTuple):
         return bool(self.rgb == other.rgb or self.hsl == other.hsl)
 
     @classmethod
-    def from_rgb(cls: type[T], color: Rgb) -> T:
+    def from_rgb(cls, color: Rgb) -> Self:
         """Create a color from an rgb object."""
         return cls(color, rgb_to_hsl(color))
 
     @classmethod
-    def from_hex(cls: type[T], value: str) -> T:
+    def from_hex(cls, value: str) -> Self:
         """Create a color from a hex value."""
         return cls.from_rgb(Rgb.from_hex(value))
 
     @classmethod
-    def from_hsl(cls: type[T], color: Hsl) -> T:
+    def from_hsl(cls, color: Hsl) -> Self:
         """Create a color from an hsl object."""
         return cls(hsl_to_rgb(color), color)
 
@@ -200,7 +200,7 @@ class Color(NamedTuple):
         return self.from_hsl(self.hsl.arc(**kwargs))
 
     @classmethod
-    def from_ctor(cls: type[T], value: str) -> T:
+    def from_ctor(cls, value: str) -> Self:
         """Create a color from an hsl or rgb constructor string."""
 
         # Check if this is a canonical color.
@@ -217,7 +217,7 @@ class Color(NamedTuple):
         return cls.from_hex(value)
 
     @classmethod
-    def create(cls: type[T], value: Colorlike) -> T:
+    def create(cls, value: Colorlike) -> Self:
         """Create a color from a variety of possible sources."""
 
         if isinstance(value, (cls, Color)):
@@ -229,7 +229,7 @@ class Color(NamedTuple):
         return cls.from_ctor(value)
 
     def animate(
-        self: T,
+        self,
         hue: int = None,
         saturation: float = None,
         lightness: float = None,
@@ -238,7 +238,7 @@ class Color(NamedTuple):
         blue: int = None,
         alpha: float = None,
         delta: bool = False,
-    ) -> T:
+    ) -> Self:
         """Animate this color based on HSL properties."""
 
         if red is not None or blue is not None or green is not None:

@@ -3,7 +3,7 @@ A module for visualizing color themes.
 """
 
 # built-in
-from typing import Iterator, Union
+from collections.abc import Iterator
 
 # internal
 from svgen.cartesian.rectangle import Rectangle
@@ -14,7 +14,7 @@ from svgen.element.rect import Rect
 
 
 def visualize_theme(
-    theme: Union[ColorTheme, str], rect: Rectangle, columns: bool = True
+    theme: ColorTheme | str, rect: Rectangle, columns: bool = True
 ) -> Iterator[Rect]:
     """
     Create filled rectangle elements for this theme inside another

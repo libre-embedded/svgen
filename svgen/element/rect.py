@@ -4,7 +4,6 @@ svgen - A module for the 'rect' element.
 
 # built-in
 from math import isclose
-from typing import Union
 
 # internal
 from svgen.attribute import PossibleAttributes, attributes
@@ -132,7 +131,7 @@ class Rect(FillColorMixin, RectangularMixin, RadiusXyMixin):
 
     @staticmethod
     def centered(
-        box: Union[ViewBox, Rectangle],
+        box: ViewBox | Rectangle,
         width_scale: float = UNITY,
         height_scale: float = UNITY,
         color: Colorlike = None,
@@ -149,7 +148,7 @@ class Rect(FillColorMixin, RectangularMixin, RadiusXyMixin):
         rect = Rectangle.centered(box, width_scale, height_scale, square)
 
         # Handle translation.
-        if "translation" in kwargs and kwargs["translation"]:
+        if kwargs.get("translation"):
             rect = rect.translate(Translation(**kwargs["translation"]))
             del kwargs["translation"]
 

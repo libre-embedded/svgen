@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.4
-# hash=ee2187eba06663f458e13fa33bfd2fa9
+# hash=85cf06e2c888ee9ce067af8f908aa8ee
 # =====================================
 
 """
@@ -23,7 +23,7 @@ from svgen import DESCRIPTION, VERSION
 from svgen.app import add_app_args, entry
 
 
-def main(argv: list[str] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     """Program entry-point."""
 
     result = 0

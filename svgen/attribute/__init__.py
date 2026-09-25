@@ -4,7 +4,7 @@ svgen - A module for XML-style attribute interfaces.
 
 # built-in
 from abc import ABC, abstractmethod
-from typing import TypeVar, Union
+from typing import TypeVar
 
 T = TypeVar("T", bound="Attribute")
 
@@ -24,7 +24,7 @@ class Attribute(ABC):
         """Get the string key for this attribute."""
 
         if hasattr(self, "name"):
-            return str(getattr(self, "name"))
+            return str(self.name)
 
         key = type(self).__name__
         return key[0].lower() + key[1:]
@@ -49,7 +49,7 @@ class Attribute(ABC):
         """Create this attribute from a string."""
 
 
-AttributeValue = Union[str, int, float, bool]
+AttributeValue = str | int | float | bool
 
 
 class SimpleAttribute(Attribute):
@@ -76,16 +76,14 @@ class SimpleAttribute(Attribute):
         return cls(key, value)
 
     @staticmethod
-    def from_dict(data: dict[str, Union[str, int, float]]) -> list[Attribute]:
+    def from_dict(data: dict[str, str | int | float]) -> list[Attribute]:
         """Get a list of attributes from dictionary data."""
         return [
             SimpleAttribute(key, str(value)) for key, value in data.items()
         ]
 
 
-PossibleAttributes = Union[
-    dict[str, AttributeValue], list[Attribute], Attribute
-]
+PossibleAttributes = dict[str, AttributeValue] | list[Attribute] | Attribute
 
 
 def attributes(data: PossibleAttributes = None) -> list[Attribute]:

@@ -3,7 +3,7 @@ svgen - A module for interacting with rectangular entities.
 """
 
 # built-in
-from typing import NamedTuple, Union
+from typing import NamedTuple
 
 # internal
 from svgen.cartesian import UNITY, Dimensions
@@ -62,7 +62,7 @@ class Rectangle(NamedTuple):
         )
 
     def translate(
-        self, move: Union[Translation, float], *args, **kwargs
+        self, move: Translation | float, *args, **kwargs
     ) -> "Rectangle":
         """Move a rectangle by a given translation."""
 

@@ -4,11 +4,12 @@ svgen - This package's command-line entry-point application.
 
 # built-in
 import argparse
+from collections.abc import Iterable
 from copy import deepcopy
 from logging import getLogger
 from pathlib import Path
 from sys import path
-from typing import Iterable, cast
+from typing import cast
 
 # third-party
 from vcorelib.dict import GenericStrDict, merge_dicts
@@ -75,7 +76,7 @@ def entry(args: argparse.Namespace) -> int:
     # Save the initial configuration data.
     original = deepcopy(config.data)
 
-    scripts = set(x.resolve() for x in args.scripts)
+    scripts = {x.resolve() for x in args.scripts}
 
     # Generate the main document.
     generate(config, args.output, args.dir, scripts, images=args.images)
@@ -101,8 +102,7 @@ def entry(args: argparse.Namespace) -> int:
             config,
             output,
             args.dir,
-            scripts
-            | set(Path(x).resolve() for x in variant.get("scripts", [])),
+            scripts | {Path(x).resolve() for x in variant.get("scripts", [])},
             images=args.images,
         )
 

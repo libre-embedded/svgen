@@ -3,7 +3,7 @@ A module for adding pin elements to circuit chips.
 """
 
 # built-in
-from typing import Iterator
+from collections.abc import Iterator
 
 # internal
 from svgen.cartesian.point import Point

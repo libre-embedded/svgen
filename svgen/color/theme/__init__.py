@@ -4,8 +4,8 @@ A module for working with color themes.
 
 # built-in
 from collections import UserDict
-from collections.abc import Mapping
-from typing import MutableMapping, NamedTuple, Optional, cast
+from collections.abc import Mapping, MutableMapping
+from typing import NamedTuple, cast
 
 # third-party
 from vcorelib.dict import GenericStrDict
@@ -75,7 +75,7 @@ class ColorTheme(
             },
         )
 
-    def lookup(self, key: str) -> tuple[str, Optional[Color]]:
+    def lookup(self, key: str) -> tuple[str, Color | None]:
         """Attempt to find an existing color in this theme by key."""
 
         result = None

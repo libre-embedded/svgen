@@ -3,7 +3,7 @@ svgen - A module for the 'style' attribute.
 """
 
 # built-in
-from typing import NamedTuple, Union
+from typing import NamedTuple
 
 # internal
 from svgen.attribute import Attribute
@@ -59,15 +59,15 @@ class CssProperty(NamedTuple):
 
     @staticmethod
     def from_dict(
-        data: dict[str, Union[str, int, float]],
+        data: dict[str, str | int | float],
     ) -> list["CssProperty"]:
         """Get a list of attributes from dictionary data."""
         return [CssProperty(key, str(value)) for key, value in data.items()]
 
 
-PossibleProperties = Union[
-    dict[str, Union[str, int, float]], list[CssProperty], CssProperty
-]
+PossibleProperties = (
+    dict[str, str | int | float] | list[CssProperty] | CssProperty
+)
 
 
 def properties(data: PossibleProperties = None) -> list[CssProperty]:

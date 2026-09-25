@@ -2,11 +2,12 @@
 svgen - An interface for retrieving and interacting with test data.
 """
 
+from collections.abc import Iterator
+
 # built-in
 from contextlib import contextmanager
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Iterator, List
 
 # internal
 from svgen import PKG_NAME
@@ -36,7 +37,7 @@ def get_script(name: str = "sample") -> Path:
 @contextmanager
 def base_args(
     name: str = "sample", include_config: bool = True
-) -> Iterator[List[str]]:
+) -> Iterator[list[str]]:
     """Get base arguments to invoke this package's command-line entry."""
 
     with TemporaryDirectory() as tmpdir:

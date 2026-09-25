@@ -4,12 +4,12 @@ svgen - A module for working with alpha channels for colors.
 
 # built-in
 from math import isclose
-from typing import Union
+from typing import Self
 
 # internal
 from svgen.color.numbers import css_number_to_ratio
 
-Alphalike = Union[float, int, str]
+Alphalike = float | int | str
 
 
 class Alpha(float):
@@ -22,7 +22,7 @@ class Alpha(float):
             return NotImplemented
         return isclose(float(self), float(other), rel_tol=1e-4, abs_tol=0.005)
 
-    def __new__(cls, val: Alphalike) -> "Alpha":
+    def __new__(cls, val: Alphalike) -> Self:
         """From the provided value, get a ratio between 0.0 and 1.0."""
 
         return super().__new__(cls, css_number_to_ratio(val))

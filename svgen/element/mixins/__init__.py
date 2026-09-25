@@ -3,7 +3,7 @@ A module implementing svg element mixin classes.
 """
 
 # built-in
-from typing import Iterator, Optional
+from collections.abc import Iterator
 
 # internal
 from svgen.attribute import Attribute, SimpleAttribute
@@ -53,7 +53,7 @@ class RadiusXyMixin:
 class FillColorMixin(Element):
     """A mixin class for elements with a 'fill' color attribute."""
 
-    _fill_color: Optional[Color] = None
+    _fill_color: Color | None = None
 
     @property
     def has_fill_color(self) -> bool:

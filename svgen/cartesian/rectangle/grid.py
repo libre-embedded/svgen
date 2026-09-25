@@ -3,7 +3,8 @@ A module implementing grid interfaces for rectangles.
 """
 
 # built-in
-from typing import Iterable, NamedTuple, Tuple, Union
+from collections.abc import Iterable
+from typing import NamedTuple
 
 # internal
 from svgen.cartesian.mutate import Translation
@@ -62,7 +63,7 @@ class RectangleGrid(NamedTuple):
                 yield self.box(col, row)
 
     @property
-    def enumerate_boxes(self) -> Iterable[Tuple[RectangleIndex, Rectangle]]:
+    def enumerate_boxes(self) -> Iterable[tuple[RectangleIndex, Rectangle]]:
         """Iterate over boxes belonging to this grid."""
         for row in range(self.rows):
             for col in range(self.columns):
@@ -81,7 +82,7 @@ class RectangleGrid(NamedTuple):
         return RectangleGrid(rect, columns, rows)
 
     def translate(
-        self, dx: Union[Translation, float], *args, **kwargs
+        self, dx: Translation | float, *args, **kwargs
     ) -> "RectangleGrid":
         """Translate this rectangle grid."""
 

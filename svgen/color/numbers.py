@@ -3,7 +3,7 @@ svgen - A module for working with number primitives.
 """
 
 
-def css_number_to_ratio(val: float | int | str) -> float:
+def css_number_to_ratio(val: float | str) -> float:
     """
     Given a few possible types of input, return a ratio between 0.0 and 1.0.
     """
@@ -52,9 +52,7 @@ def parse_ctor(
             value = value[len(suffix) :]
 
     # Remove braces.
-    if value.startswith("("):
-        value = value[1:]
-    if value.endswith(")"):
-        value = value[:-1]
+    value = value.removeprefix("(")
+    value = value.removesuffix(")")
 
     return [x.strip() for x in value.split(sep)]
