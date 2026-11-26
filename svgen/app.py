@@ -58,7 +58,7 @@ def generate(
 
     # Generate image outputs.
     if images:
-        generate_images(doc, output)
+        generate_images(doc, output, nproc=config.get("nproc"))
 
 
 def entry(args: argparse.Namespace) -> int:

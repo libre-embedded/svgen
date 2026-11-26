@@ -6,6 +6,7 @@ https://gitlab.com/inkscape/inkscape
 
 # built-in
 import asyncio
+from os import process_cpu_count
 
 # third-party
 from vcorelib.task.subprocess.run import SubprocessExecStreamed
@@ -30,7 +31,32 @@ async def invoke(*cli_args: str, entry: str = DEFAULT_ENTRY) -> bool:
 
 
 async def invoke_multiple(
-    args: list[list[str]], entry: str = DEFAULT_ENTRY
+    args: list[list[str]],
+    entry: str = DEFAULT_ENTRY,
+    nproc: int | None = None,
 ) -> bool:
     """Run multiple inkscape invocations at the same time."""
-    return all(await asyncio.gather(*[invoke(*x, entry=entry) for x in args]))
+
+    # The CPU count is not a guaranteed-correct constraint (consider manually
+    # constraining on some systems).
+    if nproc is None:
+        nproc = process_cpu_count() or 1
+
+    gen_idx: int = 0
+    num_frames = len(args)
+    tasks: list[asyncio.Task[bool | None]] = []
+
+    result = True
+
+    while result and gen_idx < num_frames:
+        while len(tasks) < nproc and gen_idx < num_frames:
+            tasks.append(
+                asyncio.create_task(invoke(*args[gen_idx], entry=entry))
+            )
+            gen_idx += 1
+
+        assert tasks
+        result = all(await asyncio.gather(*tasks))
+        tasks = []
+
+    return result

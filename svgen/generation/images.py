@@ -35,7 +35,10 @@ def generate_icon(output_dir: Path) -> None:
 
 
 def generate_images(
-    doc: Svg, output: Path, cli_entry: str = DEFAULT_ENTRY
+    doc: Svg,
+    output: Path,
+    cli_entry: str = DEFAULT_ENTRY,
+    nproc: int | None = None,
 ) -> bool:
     """Generate image outputs for this document."""
 
@@ -57,7 +60,7 @@ def generate_images(
     # Run inkscape to generate outputs.
     result = False
     with suppress(FileNotFoundError):
-        result = run(invoke_multiple(arg_sets, entry=cli_entry))
+        result = run(invoke_multiple(arg_sets, entry=cli_entry, nproc=nproc))
 
     # Also generate an icon for square documents.
     if result and doc_ratio.square:
