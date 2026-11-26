@@ -7,6 +7,7 @@ https://gitlab.com/inkscape/inkscape
 # built-in
 import asyncio
 from os import process_cpu_count
+from typing import Any
 
 # third-party
 from vcorelib.task.subprocess.run import SubprocessExecStreamed
@@ -17,17 +18,21 @@ DEFAULT_ENTRY = "inkscape"
 class InkscapeTask(SubprocessExecStreamed):
     """A task implementation for invoking inkscape at command-line."""
 
-    async def invoke(self, *cli_args, entry: str = DEFAULT_ENTRY) -> bool:
+    async def invoke(
+        self, *cli_args, entry: str = DEFAULT_ENTRY, **kwargs
+    ) -> bool:
         """Invoke inkscape."""
-        return await self.run({}, {}, *cli_args, args="", program=entry)
+        return await self.run(
+            {}, {}, *cli_args, args="", program=entry, **kwargs
+        )
 
 
 INKSCAPE = InkscapeTask(DEFAULT_ENTRY)
 
 
-async def invoke(*cli_args: str, entry: str = DEFAULT_ENTRY) -> bool:
+async def invoke(*cli_args: str, entry: str = DEFAULT_ENTRY, **kwargs) -> bool:
     """Run an inkscape command-line command."""
-    return await INKSCAPE.invoke(*cli_args, entry=entry)
+    return await INKSCAPE.invoke(*cli_args, entry=entry, **kwargs)
 
 
 async def invoke_multiple(
@@ -37,8 +42,6 @@ async def invoke_multiple(
 ) -> bool:
     """Run multiple inkscape invocations at the same time."""
 
-    # The CPU count is not a guaranteed-correct constraint (consider manually
-    # constraining on some systems).
     if nproc is None:
         nproc = process_cpu_count() or 1
 
@@ -48,11 +51,15 @@ async def invoke_multiple(
 
     result = True
 
+    kwargs: dict[str, Any] = {"entry": entry}
+    if entry == DEFAULT_ENTRY:
+        # https://gitlab.com/inkscape/inkscape/-/work_items/4716
+        # https://lists.infradead.org/pipermail/barebox/2025-August/052403.html
+        kwargs["env"] = {"SELF_CALL": "1"}
+
     while result and gen_idx < num_frames:
         while len(tasks) < nproc and gen_idx < num_frames:
-            tasks.append(
-                asyncio.create_task(invoke(*args[gen_idx], entry=entry))
-            )
+            tasks.append(asyncio.create_task(invoke(*args[gen_idx], **kwargs)))
             gen_idx += 1
 
         assert tasks
